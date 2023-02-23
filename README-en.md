@@ -13,7 +13,7 @@ A webpage particle animation renderer optimized from [canvas-nest.js](https://gi
 
 ## 🎨 **More Custom Options**
 
-Compared to `5` custom options of `canvas-nest.js`, this renderer offers up to **`13`** custom options. Helps you to create a variety of animation!
+Compared to `5` custom options of `canvas-nest.js`, this renderer offers up to **`14`** custom options. Helps you to create a variety of animation!
 
 ## How to use
 
