@@ -125,11 +125,11 @@ export class CanvasNice {
 
     requestFrame() {
         this.simulator.draw();
-        // this.tid = setTimeout(
-        //     () => { this.pendingRender(); },
-        //     1000 / this.c.render_rate
-        // );
-        this.tid = requestAnimationFrame(
+        if (this.c.render_rate) this.tid = setTimeout(
+            () => { this.pendingRender(); },
+            1000 / this.c.render_rate
+        );
+        else this.tid = requestAnimationFrame(
             () => { this.pendingRender(); }
         );
     }

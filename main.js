@@ -1,9 +1,9 @@
 new CanvasNice({
     point_dist: 77,
     point_count: 500,
-    point_size: { // optional, default: 1, 1
+    point_size: {
         min: 1,
-        max: 2
+        max: 1.5
     },
     point_slow_down_rate: 0.8,
     point_color: '120,120,120',
