@@ -15,5 +15,5 @@ new CanvasNice({
     render_rate: 45,
     chunk_capacity: 15,
     chunk_size_constant: 0.8,
-    pointer_inter_type: 0
+    pointer_inter_type: -1
 });

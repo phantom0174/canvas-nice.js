@@ -54,6 +54,8 @@ export class CanvasNice {
             this.resetRenderInfo();
         };
 
+        if (this.c.pointer_inter_type === -1) return;
+
         this.onmousemove = window.onmousemove;
         window.onmousemove = e => {
             this.pointer.x = e.clientX;
@@ -134,12 +136,14 @@ export class CanvasNice {
         );
     }
 
-    destroy() {
+    destroy() {        
+        cancelAnimationFrame(this.tid);
+        document.body.removeChild(this.canvas);
+
+        if (this.c.pointer_inter_type === -1) return;
+        
         // set mouse event to default
         window.onmousemove = this.onmousemove;
         window.onmouseout = this.onmouseout;
-
-        cancelAnimationFrame(this.tid);
-        document.body.removeChild(this.canvas);
     }
 }

@@ -7,13 +7,13 @@ A webpage particle animation renderer optimized from [canvas-nest.js](https://gi
 
 ## 💨 **Faster Rendering**
 
-- Use `chunks` for spacial partitioning of dynamic objects instead of the brute-force search used by `canvas-nest`.
+- Use `chunks` for spacial partitioning to store dynamic objects instead of the brute-force search used by `canvas-nest`.
 
 - Implements drawing buffer, which increases the rendering speed **dramatically**.
 
 ## 🎨 **More Custom Options**
 
-Compared to `5` custom options of `canvas-nest.js`, this renderer offers up to **`14`** custom options. Helps you to create a variety of animation!
+Compared to `5` custom options of `canvas-nest.js`, this renderer offers up to **`14`** custom options. Enables you to create a variety of animation!
 
 ## How to use
 
@@ -25,7 +25,7 @@ Copy and paste the following url and put it into the `body` section of html file
 <script defer type="text/javascript" src="https://phantom0174.github.io/canvas-nice.js/canvas-nice.min.js"></script>
 ```
 
-> The code had been packed and zipped. Current size: `8.65` KiB
+> The code had been packed and zipped. Current size: `7.22` KiB
 
 ### Creating Canvas
 
@@ -73,10 +73,10 @@ line_color: 'r,g,b' (r, g, b >= 0 && <= 255)
 line_width_multiplier: float (>= 0)
 zIndex: int (any)
 render_rate: int (> 0)
-canvas_opacity: float (> 0 && < 1)
+canvas_opacity: float (>= 0 && <= 1)
 chunk_capacity: int (> 0)
 chunk_size_constant: float (> 0.25)
-pointer_inter_type: int (0 / 1)
+pointer_inter_type: int (-1 / 0 / 1)
 ```
 
 - `point_dist`: The interaction radius of a particle. (in pixels)
@@ -95,6 +95,7 @@ pointer_inter_type: int (0 / 1)
 - `pointer_inter_type`: The interaction type between the particles and the cursor, with a total of 2 types:
 
     ```text
+    -1: No interaction
     0: Particles in a certain area around the cursor will be completely stationary.
     1: Nearly the same interaction of the original canvas-nest.js, oscillating the particles back and forth within a certain range around the cursor.
     ```

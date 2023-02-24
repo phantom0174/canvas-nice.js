@@ -26,7 +26,7 @@
 <script defer type="text/javascript" src="https://phantom0174.github.io/canvas-nice.js/canvas-nice.min.js"></script>
 ```
 
-> 程式碼已打包且壓縮過，目前大小為 `8.65` KiB。
+> 程式碼已打包且壓縮過，目前大小為 `7.22` KiB。
 
 ### 建立畫布
 
@@ -73,11 +73,11 @@ point_color: 'r,g,b' (r, g, b >= 0 && <= 255)
 line_color: 'r,g,b' (r, g, b >= 0 && <= 255)
 line_width_multiplier: float (>= 0)
 zIndex: int (any)
-canvas_opacity: float (> 0 && < 1)
+canvas_opacity: float (>= 0 && <= 1)
 render_rate: int (> 0)
 chunk_capacity: int (> 0)
 chunk_size_constant: float (> 0.25)
-pointer_inter_type: int (0 / 1)
+pointer_inter_type: int (-1 / 0 / 1)
 ```
 
 - `point_dist`：粒子的互動半徑（單位為像素）
@@ -92,10 +92,11 @@ pointer_inter_type: int (0 / 1)
 - `render_rate`：自訂渲染幀率，無填入則使用瀏覽器預設
 - `canvas_opacity`：畫布的透明度（`1` 為不透明；`0` 為完全透明）
 - `chunk_capacity`：每一個 chunk 所能容納的最高粒子數
-- `chunk_size_constant`：chunk 的寬或高與粒子間線的比值（大於 `1` 為無損計算，推薦 `0.8`）
-- `pointer_inter_type`：粒子與游標的互動模式，共兩種：
+- `chunk_size_constant`：chunk 的寬或高與粒子互動半徑的比值（大於 `1` 為無損計算，推薦 `0.8`）
+- `pointer_inter_type`：粒子與游標的互動模式，共三種：
 
     ```text
+    -1: 無互動
     0: 在游標周邊一定範圍內的粒子會完全靜止
     1: 模仿 canvas-nest.js 的互動模式，使粒子在一定範圍內來回震盪
     ````
