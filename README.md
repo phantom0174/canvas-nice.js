@@ -20,18 +20,10 @@
 
 ### 套件安裝
 
-- 使用 npm
-
-```markdown
-npm install --save canvas-nice.js
-```
-
-- 其他方式
-
 將下列連結或是放到 html 檔案的 body 中；或是直接將 `canvas-nice.min.js` 檔案複製到本機端使用。
 
 ```html
-<script defer type="text/javascript" src="https://phantom0174.github.io/canvas-nice.js/canvas-nice.min.js"></script>
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-nice.js/dist/canvas-nice.min.js"></script>
 ```
 
 > 程式碼已打包且壓縮過，目前大小為 `7.22` KiB。
