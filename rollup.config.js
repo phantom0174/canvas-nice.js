@@ -6,7 +6,7 @@ import { terser } from "rollup-plugin-terser";
 export default {
     input: './src/index.js',
     output: {
-        file: 'canvas-nice.min.js',
+        file: 'dist/canvas-nice.min.js',
         name: 'CanvasNice',
         format: 'umd'
     },

@@ -20,6 +20,14 @@
 
 ### 套件安裝
 
+- 使用 npm
+
+```markdown
+npm install --save canvas-nice.js
+```
+
+- 其他方式
+
 將下列連結或是放到 html 檔案的 body 中；或是直接將 `canvas-nice.min.js` 檔案複製到本機端使用。
 
 ```html

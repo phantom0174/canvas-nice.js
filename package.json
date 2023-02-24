@@ -1,14 +1,27 @@
 {
   "name": "canvas-nice.js",
-  "version": "1.2.0",
-  "description": "",
-  "main": "main.js",
+  "version": "1.0.0",
+  "description": "A particle animation rendering tool optimized with rendering. Inspired by canvas-nest.js",
+  "main": "dist/canvas-nice.min.js",
+  "author": "phantom0174",
+  "license": "MIT",
   "type": "module",
+  "files": ["dist"],
+  "homepage": "https://github.com/phantom0174/canvas-nice.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phantom0174/canvas-nice.js.git"
+  },
+  "keywords": [
+    "javascript",
+    "animation",
+    "html5-canvas",
+    "particles",
+    "canvas-nest"
+  ],
   "scripts": {
     "r": "rollup --config"
   },
-  "author": "phantom0174",
-  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",

@@ -17,7 +17,15 @@ Compared to `5` custom options of `canvas-nest.js`, this renderer offers up to *
 
 ## How to use
 
-### Installing the module
+### Install
+
+- npm
+
+```markdown
+npm install --save canvas-nice.js
+```
+
+- Other methods
 
 Copy and paste the following url and put it into the `body` section of html file, or directly clone `canvas-nice.min.js` onto your computer.
 
