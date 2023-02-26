@@ -83,7 +83,7 @@ export class CanvasNice {
         const opti_size = Math.round(
             this.c.point_dist * Math.max(this.c.chunk_size_constant, 0.25)
         );
-        console.log('[c-noice.js] Optimized chunk size:', opti_size);
+        // console.log('[c-nice.js] Optimized chunk size:', opti_size);
 
         const calOpti = (dimension) => {
             const diff = (num_of_chunks) => {
@@ -98,7 +98,7 @@ export class CanvasNice {
         this.c.X_CHUNK = calOpti(this.canvas.width);
         this.c.Y_CHUNK = calOpti(this.canvas.height);
 
-        console.log(`[c-noice.js] Chunk Number: ${this.c.X_CHUNK}*${this.c.Y_CHUNK}`);
+        // console.log(`[c-nice.js] Chunk Number: ${this.c.X_CHUNK}*${this.c.Y_CHUNK}`);
     }
 
     async pendingRender() {
@@ -112,7 +112,7 @@ export class CanvasNice {
                 );
 
                 this.render.need_initialize = false;
-                console.log(`[c-noice.js] Canvas Size: ${this.canvas.width}*${this.canvas.height}`);
+                // console.log(`[c-nice.js] Canvas Size: ${this.canvas.width}*${this.canvas.height}`);
             }
             this.requestFrame();
         } else if (Date.now() - this.render.last_changed_time > 500) {
@@ -136,12 +136,12 @@ export class CanvasNice {
         );
     }
 
-    destroy() {        
+    destroy() {
         cancelAnimationFrame(this.tid);
         document.body.removeChild(this.canvas);
 
         if (this.c.pointer_inter_type === -1) return;
-        
+
         // set mouse event to default
         window.onmousemove = this.onmousemove;
         window.onmouseout = this.onmouseout;

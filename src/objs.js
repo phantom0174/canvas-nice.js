@@ -29,13 +29,12 @@ export class Point {
             this.pointer_inter = false;
             return;
         }
-
+        
         this.vx += rand(-0.1, 0.1);
         this.vy += rand(-0.1, 0.1);
-
+        
         this.x += this.vx;
         this.y += this.vy;
-
 
         if (Math.abs(this.vx) > this.c.max_speed)
             this.vx *= this.c.slow_down;
@@ -51,9 +50,9 @@ export class Point {
 
     calPointerForce(ratio) {
         if (1 < ratio) {
-            return Math.pow(ratio - 1, 2);
-        } else if (0.8 < ratio) {
-            return -0.04;
+            return Math.pow(ratio - 1, 2) * this.c.max_speed;
+        } else if (0.5 < ratio) {
+            return -Math.pow(1 - ratio, 2) * this.c.max_speed;
         }
         return 0;
     }
@@ -65,12 +64,13 @@ export class Point {
         if (d < 1) return;
         const ratio = d / this.c.r;
         if (ratio > 1.5) return;
+        if (ratio > 1 && !this.c.pointer_inter_type) return;
 
         this.pointer_inter = true;
 
         if (!this.c.pointer_inter_type) {
             this.vx = 0, this.vy = 0;
-        } else {
+        } else if (this.c.pointer_inter_type) {
             const force = this.calPointerForce(ratio);
             let dv = {
                 x: Math.sign(dx) * force,
@@ -176,8 +176,7 @@ export class DrawBuffer {
         
         this.ctx = ctx;
         this.ctx.fillStyle = `rgb(${config.point_color})`;
-        this.max_capacity = 1000;
-        this.cur_capacity = 0;
+        this.ctx.lineCap = "round";
 
         // index: 10 * alpha(0.2 ~ 1) - 2
         // inverse: (index + 2) / 10
@@ -243,7 +242,6 @@ export class DrawBuffer {
             this.ctx.arc(pos_info[0], pos_info[1], pos_info[2], 0, this.rad);
         }
         this.ctx.fill();
-        this.ctx.stroke();
         
         this.arc.buffer = [];
         this.arc.cur_cap = 0;

@@ -51,7 +51,7 @@ export class Simulator {
                 const left_dy = (loc_p.y - this.c.point_dist >= chunk.y) ? -1 : 0;
                 const right_dy = (loc_p.y + this.c.point_dist >= right_y) ? 1 : 0;
                 for (let i = 0; i <= right_dx; i++) {
-                    for (let j = -left_dy; j <= right_dy; j++) {
+                    for (let j = left_dy; j <= right_dy; j++) {
                         if (i === 0 && j === 0) continue; // do not compute local chunk
                         if (
                             ci + i >= this.c.X_CHUNK
