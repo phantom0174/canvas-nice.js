@@ -48,7 +48,7 @@ export class Simulator {
                 }
 
                 const right_dx = (loc_p.x + this.c.point_dist >= right_x) ? 1 : 0;
-                const left_dy = (loc_p.y - this.c.point_dist >= chunk.y) ? -1 : 0;
+                const left_dy = (loc_p.y - this.c.point_dist < chunk.y) ? -1 : 0;
                 const right_dy = (loc_p.y + this.c.point_dist >= right_y) ? 1 : 0;
                 for (let i = 0; i <= right_dx; i++) {
                     for (let j = left_dy; j <= right_dy; j++) {
