@@ -23,10 +23,10 @@
 將下列連結或是放到 html 檔案的 body 中；或是直接將 `canvas-nice.min.js` 檔案複製到本機端使用。
 
 ```html
-<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-nice.js/dist/canvas-nice.min.js"></script>
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-nice.js@1.0.2/dist/canvas-nice.min.js"></script>
 ```
 
-> 程式碼已打包且壓縮過，目前大小為 `7.22` KiB。
+> 程式碼已打包且壓縮過，目前大小為 `7.09` KiB。
 
 ### 建立畫布
 
