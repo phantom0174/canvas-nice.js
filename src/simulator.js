@@ -21,7 +21,7 @@ export class Simulator {
             if (ci - 4 >= 0 && ci - 4 < this.c.X_CHUNK) tasks.push(this.updateVerticalChunks(ci - 4));
             if (tasks.length === 0) {
                 this.draw_buffer.dumpLine();
-                this.draw_buffer.dumpArc();
+                this.draw_buffer.dumpArc();                
                 break;
             }
 
@@ -47,6 +47,9 @@ export class Simulator {
                     );
                 }
 
+                // Calculate if point interaction range exceeds current chunk
+                // The reason for not calculating left_dx is that
+                // the traverse direction is left to right
                 const right_dx = (loc_p.x + this.c.point_dist >= right_x) ? 1 : 0;
                 const left_dy = (loc_p.y - this.c.point_dist < chunk.y) ? -1 : 0;
                 const right_dy = (loc_p.y + this.c.point_dist >= right_y) ? 1 : 0;
@@ -77,9 +80,10 @@ export class Simulator {
                 const tar_p = chunk.points[j];
 
                 this.draw_buffer.push(
-                    p.calInterWithPoint(tar_p, true)
+                    p.calInterWithPoint(tar_p)
                 );
-                tar_p.calInterWithPoint(p, false);
+                // deprecated calculation
+                // tar_p.calInterWithPoint(p, false);
             }
         }
     }
@@ -87,9 +91,12 @@ export class Simulator {
     calSurroundingInteraction(tar_chunk, local_p) {
         tar_chunk.points.forEach(tar_p => {
             this.draw_buffer.push(
-                local_p.calInterWithPoint(tar_p, true)
+                local_p.calInterWithPoint(tar_p)
             );
-            tar_p.calInterWithPoint(local_p, false);
+            // deprecated calculation, since simulation in legacy versions
+            // needs calculating the gravity of each particle
+            // 
+            // tar_p.calInterWithPoint(local_p, false);
         });
     }
 
@@ -134,23 +141,24 @@ export class Simulator {
 
                 // boundary check
                 if (new_chunk_x < 0) {
-                    cur_p.x = 0.1;
+                    cur_p.x *= -1;
                     cur_p.vx *= -1;
                 } else if (new_chunk_x >= this.c.X_CHUNK) {
-                    cur_p.x = this.grid.w - 0.1;
+                    cur_p.x = 2 * this.grid.w - cur_p.x;
                     cur_p.vx *= -1;
                 } else if (new_chunk_y < 0) {
-                    cur_p.y = 0.1;
+                    cur_p.y *= -1;
                     cur_p.vy *= -1;
                 } else if (new_chunk_y >= this.c.Y_CHUNK) {
-                    cur_p.y = this.grid.h - 0.1;
+                    cur_p.y = 2 * this.grid.h - cur_p.y;
                     cur_p.vy *= -1;
                 } else { // move to new chunk, or to random location if full
                     rmv_list.push(i);
 
                     const new_chunk = this.grid.chunks[new_chunk_x][new_chunk_y];
-                    if (new_chunk.points.length < this.c.chunk_capacity) new_chunk.points.push(cur_p);
-                    else this.grid.insertPoint(new Point(this.grid.w, this.grid.h, this.c));
+                    if (new_chunk.points.length < this.c.chunk_capacity)
+                        new_chunk.points.push(cur_p);
+                    else this.grid.genNewPoint();
                 }
             }
 

@@ -2,25 +2,14 @@ import { rand } from './utils';
 
 export class Point {
     constructor(w, h, config) {
+        this.c = config;
+
         this.x = rand(0, w);
         this.y = rand(0, h);
         this.vx = rand(-1, 1);
         this.vy = rand(-1, 1);
 
         this.size = config.point_size ? rand(config.point_size.min, config.point_size.max) : 1;
-
-        this.lazy = {
-            touched: 0,
-            near: 0,
-            sleep_frame: 0
-        }
-
-        this.c = {
-            pointer_inter_type: config.pointer_inter_type,
-            max_speed: config.max_point_speed,
-            r: config.point_dist,
-            slow_down: config.point_slow_down_rate
-        };
         this.pointer_inter = false;
     }
 
@@ -99,13 +88,13 @@ export class Point {
         };
     }
 
-    calInterWithPoint(p, need_draw) {
+    calInterWithPoint(p) {
         const dx = p.x - this.x, dy = p.y - this.y;
         const d = Math.hypot(dx, dy);
 
         if (d > this.c.r || d < 1) return;
 
-        if (need_draw) return {
+        return {
             type: 'l',
             a: this.calAlpha(d),
             pos_info: [this.x, this.y, p.x, p.y]
@@ -125,6 +114,14 @@ class Chunk {
 export class Grid {
     constructor(w, h, config) {
         this.c = config;
+
+        // point config
+        this.pc = {
+            pointer_inter_type: config.pointer_inter_type,
+            max_speed: config.max_point_speed,
+            r: config.point_dist,
+            slow_down: config.point_slow_down_rate
+        };
 
         this.w = w;
         this.h = h;
@@ -152,12 +149,12 @@ export class Grid {
     }
 
     initializePoints() {
-        for (let i = 0; i < this.c.point_count; i++) {
-            this.insertPoint(new Point(this.w, this.h, this.c));
-        }
+        for (let i = 0; i < this.c.point_count; i++) this.genNewPoint();
     }
 
-    insertPoint(point) {
+    genNewPoint() {
+        const point = new Point(this.w, this.h, this.pc);
+
         const chunk_x_num = Math.floor(point.x / this.chunk_w);
         const chunk_y_num = Math.floor(point.y / this.chunk_h);
 
