@@ -9,7 +9,7 @@ export class Point {
         this.vx = rand(-1, 1);
         this.vy = rand(-1, 1);
 
-        this.size = config.point_size ? rand(config.point_size.min, config.point_size.max) : 1;
+        this.size = rand(config.point_size.min, config.point_size.max);
         this.pointer_inter = false;
     }
 
@@ -120,7 +120,11 @@ export class Grid {
             pointer_inter_type: config.pointer_inter_type,
             max_speed: config.max_point_speed,
             r: config.point_dist,
-            slow_down: config.point_slow_down_rate
+            slow_down: config.point_slow_down_rate,
+            point_size: config.point_size || {
+                min: 1,
+                max: 1
+            }
         };
 
         this.w = w;

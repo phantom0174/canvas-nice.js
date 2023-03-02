@@ -1,6 +1,6 @@
 {
   "name": "canvas-nice.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A particle animation rendering tool optimized with rendering. Inspired by canvas-nest.js",
   "main": "dist/canvas-nice.min.js",
   "author": "phantom0174",

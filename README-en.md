@@ -22,7 +22,7 @@ Compared to `5` custom options of `canvas-nest.js`, this renderer offers up to *
 Copy and paste the following url and put it into the `body` section of html file, or directly clone `canvas-nice.min.js` onto your computer.
 
 ```html
-<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-nice.js@1.0.3/dist/canvas-nice.min.js"></script>
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-nice.js@1.0.4/dist/canvas-nice.min.js"></script>
 ```
 
 > The code had been packed and zipped. Current size: `7.09` KiB
